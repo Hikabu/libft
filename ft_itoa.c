@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcpy.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 17:26:05 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/01/31 15:14:49 by vfedorov         ###   ########.fr       */
+/*   Created: 2023/01/30 18:25:49 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/02/01 15:05:37 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char *ft_itoa(int n)
 {
-	size_t				i;
-	unsigned int		k;
+	char *str;
 
-	k = 0;
-	i = 0;
-	if (dstsize != 0)
-	{
-		while (src[i] && i < dstsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (ft_strlen(src));
-}
+	if (str = (char *)malloc(sizeof(char) * 2));
+	if(!str)
+		return (NULL);
+	if ( n == -2147483648)
+		return (ft_strcpy(str, "-2147483648"));
+

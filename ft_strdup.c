@@ -1,32 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcpy.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 17:26:05 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/01/31 15:14:49 by vfedorov         ###   ########.fr       */
+/*   Created: 2023/01/28 19:56:39 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/01/29 13:14:49 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strdup(const char *s1)
 {
-	size_t				i;
-	unsigned int		k;
+	char	*der;
+	int		i;
+	int		g;
 
-	k = 0;
 	i = 0;
-	if (dstsize != 0)
+	while (s1[i])
+		i++;
+	der = malloc(sizeof(char) * (i + 1));
+	if (!(der))
+		return (0);
+	g = 0;
+	while (s1[g])
 	{
-		while (src[i] && i < dstsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		der[g] = s1[g];
+			g++;
 	}
-	return (ft_strlen(src));
+	der[g] = '\0';
+	return (der);
 }
+/*
+#include<string.h>
+#include<stdio.h>
+int main()
+{
+	const char s[] = "werrtyu";
+	printf("%s\n", ft_strdup(s));
+	printf("%s", strdup(s));
+}
+*/

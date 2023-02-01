@@ -6,7 +6,7 @@
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 20:52:34 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/01/26 14:44:10 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/01/31 19:24:53 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		++i;
 	}
 	if (i != n)
-		return (s1[i] - s2[i]);
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return (0);
 }
