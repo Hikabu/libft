@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 18:33:01 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/02/02 15:23:20 by vfedorov         ###   ########.fr       */
+/*   Created: 2023/02/02 15:37:53 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/02/02 16:13:26 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_striteri( char *s, void (*f)(unsigned int, char *))
 {
-	int		i;
-	int		dl1;
-	int		dl2;
-	char	*str;
+	size_t	i;
 
+	if (!s || !f || !(*s))
+		return ;
 	i = 0;
-	dl1 = ft_strlen(s1);
-	dl2 = ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (dl1 + dl2 + 1));
-	if (str == NULL)
-		return (NULL);
-	while (s1[i])
+	while (s[i])
 	{
-		str[i] = s1[i];
+		f(i, &s[i]);
 		i++;
 	}
-	i = 0;
-	while (s2[i])
-	{
-		str[dl1] = s2[i];
-		i++;
-		dl1++;
-	}
-	str[dl1] = '\0';
-	return (str);
 }
