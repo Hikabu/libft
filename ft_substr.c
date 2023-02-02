@@ -6,7 +6,7 @@
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:37:27 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/02/02 17:51:02 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/02/02 22:51:54 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	i;
 	char			*drug_s;
 
+	if (!s)
+		return (0);
 	drug_s = malloc(sizeof(char *) * (len + 1));
 	if (!s && !drug_s)
 		return (0);
