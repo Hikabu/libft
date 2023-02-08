@@ -6,22 +6,22 @@
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:41:27 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/02/07 15:34:45 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:18:09 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int ft_poscitay(char const *str, char delim)
+static	int	ft_poscitay(char const *str, char delim)
 {
-	int	word_count;
+	int				word_count;
 	unsigned int	i;
 
 	i = 0;
 	word_count = 0;
 	while (str[i])
 	{
-		while (str[i] == delim)
+		if (str[i] == delim)
 			i++;
 		if (str[i] != '\0')
 			word_count++;
@@ -31,9 +31,9 @@ static int ft_poscitay(char const *str, char delim)
 	return (word_count);
 }
 
-static char *ft_sdup(char const *s, int start, int finish)
+static char	*ft_perenos(char const *s, int start, int finish)
 {
-	char *str;
+	char	*str;
 	int		i;
 
 	i = 0;
@@ -43,8 +43,7 @@ static char *ft_sdup(char const *s, int start, int finish)
 	str [i] = '\0';
 	return (str);
 }
-
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -55,16 +54,15 @@ char **ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	k = -1;
-
 	if (sst == NULL)
 		return (NULL);
 	while (i <= ft_strlen(s))
 	{
 		if (s[i] != c && k < 0)
 			k = i;
-		else if ((s[i] == c || i ==  ft_strlen(s)) && k >= 0)
+		else if ((s[i] == c || i == ft_strlen(s)) && k >= 0)
 		{
-			sst[j++] = ft_sdup(s, k, i);
+			sst[j++] = ft_perenos(s, k, i);
 			k = -1;
 		}
 		i++;
@@ -72,3 +70,20 @@ char **ft_split(char const *s, char c)
 	sst[j] = 0;
 	return (sst);
 }
+#include<stdio.h>
+int main()
+{
+	char	**str;
+	size_t	i;
+
+	i = 0;
+	str = ft_split(" fridge    in hel  l", ' ');
+	if(!str[0])
+			printf("%s", "ok\n");
+	while(str[i] != NULL)
+	{
+		printf(str[i], 1);
+		i++;
+	}
+}
+
