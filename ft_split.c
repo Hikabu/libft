@@ -6,84 +6,83 @@
 /*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:41:27 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/02/08 15:18:09 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:14:40 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_poscitay(char const *str, char delim)
+int	ft_wordcount(char const *s, char c)
 {
-	int				word_count;
-	unsigned int	i;
+	int	i;
+	int	wc;
 
 	i = 0;
-	word_count = 0;
-	while (str[i])
+	wc = 0;
+	while (s[i])
 	{
-		if (str[i] == delim)
+		if (s[i] == c)
 			i++;
-		if (str[i] != '\0')
-			word_count++;
-		while (str[i] && (str[i] != delim))
-		i++;
+		if (s[i] != c && s[i])
+			wc++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	return (word_count);
+	return (wc);
 }
 
-static char	*ft_perenos(char const *s, int start, int finish)
+static char	*ft_perevmal(char const *s, int start, int end)
 {
 	char	*str;
 	int		i;
 
 	i = 0;
-	str = (char *)malloc((finish - start + 1) * sizeof(char));
-	while (start < finish)
+	str = malloc((end - start + 1));
+	while (start < end)
 		str[i++] = s[start++];
 	str [i] = '\0';
 	return (str);
 }
+
+int	ft_len(char const *s, char c)
+{
+	int		len;
+	char	*d;
+
+	d = (char *)s;
+	len = 0;
+	while (*d && *d != c)
+	{
+		len++;
+		d++;
+	}
+	return (len);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	int		k;
 	char	**sst;
+	int		words;
+	int		i;
 
-	sst = (char **)malloc(sizeof(char *) * (ft_poscitay(s, c)) + 1);
-	i = 0;
-	j = 0;
-	k = -1;
+	if (!s)
+		return (NULL);
+	words = ft_wordcount(s, c);
+	sst = malloc(sizeof(*sst) * (words + 1));
 	if (sst == NULL)
 		return (NULL);
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] != c && k < 0)
-			k = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && k >= 0)
-		{
-			sst[j++] = ft_perenos(s, k, i);
-			k = -1;
-		}
-		i++;
-	}
-	sst[j] = 0;
-	return (sst);
-}
-#include<stdio.h>
-int main()
-{
-	char	**str;
-	size_t	i;
-
 	i = 0;
-	str = ft_split(" fridge    in hel  l", ' ');
-	if(!str[0])
-			printf("%s", "ok\n");
-	while(str[i] != NULL)
+	while (*s)
 	{
-		printf(str[i], 1);
-		i++;
+		while (*s == c && *s)
+			s++;
+		if (*s)
+		{
+			sst[i] = ft_perevmal(s, 0, ft_len(s, c));
+			s = s + ft_len(s, c);
+			i++;
+		}
 	}
-}
-
+	sst[i] = NULL;
+	return (sst);
+}	
